@@ -1,5 +1,6 @@
 package com.github.phenomics.ontolib.formats.hpo;
 
+import com.github.phenomics.ontolib.base.OntoLibRuntimeException;
 import com.github.phenomics.ontolib.ontology.data.TermAnnotation;
 import com.github.phenomics.ontolib.ontology.data.TermId;
 import com.google.common.collect.ComparisonChain;
@@ -147,7 +148,7 @@ public final class HpoGeneAnnotation implements TermAnnotation {
   @Override
   public int compareTo(TermAnnotation o) {
     if (!(o instanceof HpoGeneAnnotation)) {
-      throw new RuntimeException("Cannot compare " + o + " to a HpoGeneAnnotation");
+      throw new OntoLibRuntimeException("Cannot compare " + o + " to a HpoGeneAnnotation");
     }
 
     final HpoGeneAnnotation that = (HpoGeneAnnotation) o;

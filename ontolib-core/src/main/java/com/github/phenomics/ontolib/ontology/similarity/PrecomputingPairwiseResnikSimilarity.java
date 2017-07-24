@@ -1,5 +1,6 @@
 package com.github.phenomics.ontolib.ontology.similarity;
 
+import com.github.phenomics.ontolib.base.OntoLibRuntimeException;
 import com.github.phenomics.ontolib.ontology.data.Ontology;
 import com.github.phenomics.ontolib.ontology.data.Term;
 import com.github.phenomics.ontolib.ontology.data.TermId;
@@ -64,7 +65,7 @@ public final class PrecomputingPairwiseResnikSimilarity<T extends Term, R extend
       LoggerFactory.getLogger(PrecomputingPairwiseResnikSimilarity.class);
 
   /** Precomputed data. */
-  PrecomputedScores precomputedScores;
+  private PrecomputedScores precomputedScores;
 
   /** Number of threads to use for precomputation. */
   private final int numThreads;
@@ -151,7 +152,7 @@ public final class PrecomputingPairwiseResnikSimilarity<T extends Term, R extend
     try {
       threadPoolExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
     } catch (InterruptedException e) {
-      throw new RuntimeException("Could not wait for thread pool being done.", e);
+      throw new OntoLibRuntimeException("Could not wait for thread pool being done.", e);
     }
     progressReport.stop();
 

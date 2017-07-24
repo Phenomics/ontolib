@@ -1,10 +1,11 @@
 package com.github.phenomics.ontolib.formats.uberpheno;
 
+import java.util.Optional;
+
+import com.github.phenomics.ontolib.base.OntoLibRuntimeException;
 import com.github.phenomics.ontolib.ontology.data.TermAnnotation;
 import com.github.phenomics.ontolib.ontology.data.TermId;
 import com.google.common.collect.ComparisonChain;
-
-import java.util.Optional;
 
 /**
  * Record from Uberpheno gene annotation file.
@@ -104,7 +105,7 @@ public final class UberphenoGeneAnnotation implements TermAnnotation {
   @Override
   public int compareTo(TermAnnotation o) {
     if (!(o instanceof UberphenoGeneAnnotation)) {
-      throw new RuntimeException("Cannot compare " + o + " to a UberphenoGeneAnnotation");
+      throw new OntoLibRuntimeException("Cannot compare " + o + " to a UberphenoGeneAnnotation");
     }
 
     final UberphenoGeneAnnotation that = (UberphenoGeneAnnotation) o;

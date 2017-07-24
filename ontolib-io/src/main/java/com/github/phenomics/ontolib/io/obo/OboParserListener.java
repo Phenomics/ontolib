@@ -100,7 +100,7 @@ class OboParserListener extends Antlr4OboParserBaseListener {
    * This has package level visibility for testing purposes.
    * </p>
    */
-  List<StanzaEntry> stanzaKeyValues = null;
+ protected List<StanzaEntry> stanzaKeyValues = null;
 
   /**
    * Constructor.
@@ -131,14 +131,14 @@ class OboParserListener extends Antlr4OboParserBaseListener {
    * @param node The {@link ParseTree} node to get the value for.
    * @return The value associated with <code>node</code>.
    */
-  Object getValue(ParseTree node) {
+  protected Object getValue(ParseTree node) {
     return values.get(node);
   }
 
   /**
    * Flush the {@link #values} mapping for allowing garbage collection.
    */
-  void clearValues() {
+  private void clearValues() {
     values = new ParseTreeProperty<>();
   }
 

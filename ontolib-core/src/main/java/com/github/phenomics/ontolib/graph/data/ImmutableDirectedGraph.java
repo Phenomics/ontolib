@@ -1,5 +1,6 @@
 package com.github.phenomics.ontolib.graph.data;
 
+import com.github.phenomics.ontolib.base.OntoLibRuntimeException;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedMap;
@@ -507,7 +508,7 @@ public final class ImmutableDirectedGraph<V extends Comparable<V>, E extends Imm
       final Set<Integer> seen = new HashSet<>();
       for (E e : edges) {
         if (seen.contains(e.getId())) {
-          throw new RuntimeException("Duplicate edge Id " + e.getId() + " in edge list!");
+          throw new OntoLibRuntimeException("Duplicate edge Id " + e.getId() + " in edge list!");
         }
         seen.add(e.getId());
       }
