@@ -121,7 +121,7 @@ public class HpoDiseaseAnnotationParser implements TermAnnotationParser<HpoDisea
 
     nextLine = reader.readLine();
 
-    final SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+    final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     Date date;
     try {
       date = format.parse(dateStr);
