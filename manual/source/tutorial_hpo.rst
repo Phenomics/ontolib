@@ -75,18 +75,19 @@ You can parse the phenotype-to-disease annotation files as follows.
 
 .. code-block:: java
 
-  File inputFile = new File("phenotype_annotation.tab");
-  try {
-    HpoDiseaseAnnotationParser parser = new HpoDiseaseAnnotationParser(inputFile);
-    while (parser.hasNext()) {
-      HpoDiseaseAnnotation anno = parser.next();
-      // work with anno
+File inputFile = new File("phenotype_annotation.tab");
+        try {
+            HpoDiseaseAnnotationParser parser = new HpoDiseaseAnnotationParser(inputFile);
+            while (parser.hasNext()) {
+                HpoDiseaseAnnotation anno = parser.next();
+                // work with anno
+            }
+        } catch (IOException e) {
+        System.err.println("Problem reading from file.");
+    } catch (TermAnnotationParserException e) {
+        System.err.println("Problem parsing file.");
     }
-  } except (IOException e) {
-    System.err.println("Problem reading from file.");
-  } except (TermAnnotationException e) {
-    System.err.println("Problem parsing file.");
-  }
+    }
 
 The phenotype-to-gene annotation file can be parsed as follows.
 
