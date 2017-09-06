@@ -200,7 +200,7 @@ public final class HpoDiseaseAnnotation implements TermAnnotation {
   }
 
   /**
-   * @return Frequency modifier; optional, <code>null</code> when missing.
+   * @return Frequency modifier; returns "" empty string when not present
    */
   public String getFrequencyModifier() {
     return frequencyModifier;
