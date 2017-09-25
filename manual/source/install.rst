@@ -20,12 +20,12 @@ Simply use the following snippet for your ``pom.xml`` for using OntoLib modules 
     <dependency>
       <groupId>com.github.phenomics</groupId>
       <artifactId>ontolib-core</artifactId>
-      <version>${project.version}</version>
+      <version>0.4</version>
     </dependency>
     <dependency>
       <groupId>com.github.phenomics</groupId>
       <artifactId>ontolib-io</artifactId>
-      <version>${project.version}</version>
+      <version>0.4</version>
     </dependency>
   </dependencies>
 
