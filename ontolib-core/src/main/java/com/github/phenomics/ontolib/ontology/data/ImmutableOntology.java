@@ -1,9 +1,6 @@
 package com.github.phenomics.ontolib.ontology.data;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.github.phenomics.ontolib.graph.algo.BreadthFirstSearch;
 import com.github.phenomics.ontolib.graph.algo.VertexVisitor;
@@ -193,9 +190,26 @@ public class ImmutableOntology<T extends Term, R extends TermRelation> implement
     final Set<TermId> childTermIds = OntologyTerms.childrenOf(subOntologyRoot, this);
     final ImmutableDirectedGraph<TermId, ImmutableEdge<TermId>> subGraph =
         (ImmutableDirectedGraph<TermId, ImmutableEdge<TermId>>) graph.subGraph(childTermIds);
+    Set<TermId> intersectingTerms = Sets.intersection(nonObsoleteTermIds,childTermIds);
+    // make sure the Term map contains only terms from the subontology
+    final ImmutableMap.Builder<TermId,T> termBuilder = ImmutableMap.builder();
+
+    for (final TermId tid : intersectingTerms) {
+      termBuilder.put(tid,termMap.get(tid));
+    }
+    ImmutableMap<TermId,T> subsetTermMap=termBuilder.build();
+    // Only retain relations where both source and destination are terms in the subontology
+    final ImmutableMap.Builder<Integer,R> relationBuilder = ImmutableMap.builder();
+    for(Iterator<Map.Entry<Integer, R>> it = relationMap.entrySet().iterator(); it.hasNext(); ) {
+      Map.Entry<Integer, R> entry = it.next();
+      TermRelation tr = entry.getValue();
+      if (subsetTermMap.containsKey(tr.getSource()) && subsetTermMap.containsKey(tr.getDest())) {
+        relationBuilder.put(entry.getKey(),entry.getValue());
+      }
+    }
     return new ImmutableOntology<T, R>(metaInfo, subGraph, subOntologyRoot,
-        Sets.intersection(nonObsoleteTermIds, childTermIds),
-        Sets.intersection(obsoleteTermIds, childTermIds), termMap, relationMap);
+      intersectingTerms,
+      Sets.intersection(obsoleteTermIds, childTermIds), subsetTermMap, relationBuilder.build());
   }
 
 }
