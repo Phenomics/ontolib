@@ -207,8 +207,15 @@ public class ImmutableOntology<T extends Term, R extends TermRelation> implement
         relationBuilder.put(entry.getKey(),entry.getValue());
       }
     }
-    return new ImmutableOntology<T, R>(metaInfo, subGraph, subOntologyRoot,
-      intersectingTerms,
+    // Note: natural order returns a builder whose keys are ordered by their natural ordering.
+    final ImmutableSortedMap.Builder<String,String> metaInfoBuilder = ImmutableSortedMap.naturalOrder();
+    for (String key : metaInfo.keySet()) {
+      metaInfoBuilder.put(key,metaInfo.get(key));
+    }
+    metaInfoBuilder.put("provenance",String.format("Ontology created as a subset from original ontology with root %s",getTermMap().get(rootTermId).getName() ));
+    ImmutableSortedMap<String,String> extendedMetaInfo=metaInfoBuilder.build();
+
+    return new ImmutableOntology<T, R>(extendedMetaInfo, subGraph, subOntologyRoot,intersectingTerms,
       Sets.intersection(obsoleteTermIds, childTermIds), subsetTermMap, relationBuilder.build());
   }
 
