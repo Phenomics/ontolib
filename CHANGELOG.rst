@@ -3,6 +3,13 @@ Changelog
 =========
 
 ----
+v0.4
+----
+
+- Disabling ``mv_store`` feature of H2.
+- Fixing various bugs in ``H2ScoreDistributionReader`` and ``H2ScoreDistributionWriter``.
+
+----
 v0.3
 ----
 
