@@ -42,7 +42,7 @@ public interface Ontology<T extends Term, R extends TermRelation>
 
   /**
    * Return all the {@link TermId}s of all ancestors from {@code termId}.
-   *
+   * 
    * @param termId The {@link TermId} to query ancestor {@link TermId}s for.
    * @param includeRoot Whether or not to include the root.
    * @return {@link Set} of {@link TermId}s of the ancestors of {@code termId} (including itself),
@@ -52,7 +52,7 @@ public interface Ontology<T extends Term, R extends TermRelation>
 
   /**
    * Return all the {@link TermId}s of all ancestors from {@code termId}, including root.
-   *
+   * 
    * @param termId The {@link TermId} to query ancestor {@link TermId}s for.
    * @return {@link Set} of {@link TermId}s of the ancestors of {@code termId} (including itself),
    *         including root.
@@ -96,9 +96,6 @@ public interface Ontology<T extends Term, R extends TermRelation>
     }
     return result;
   }
-
-  public boolean existsPath(final TermId sourceID, TermId destID);
-
 
   /**
    * Construct and return sub ontology, starting from {@code subOntologyRoot}.

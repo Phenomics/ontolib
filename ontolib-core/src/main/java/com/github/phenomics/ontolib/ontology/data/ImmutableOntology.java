@@ -1,6 +1,9 @@
 package com.github.phenomics.ontolib.ontology.data;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import com.github.phenomics.ontolib.graph.algo.BreadthFirstSearch;
 import com.github.phenomics.ontolib.graph.algo.VertexVisitor;
@@ -184,25 +187,6 @@ public class ImmutableOntology<T extends Term, R extends TermRelation> implement
   public Set<TermId> getObsoleteTermIds() {
     return obsoleteTermIds;
   }
-
-  @Override
-  public boolean existsPath(final TermId sourceID, TermId destID){
-    // special case -- a term cannot have a path to itself in an ontology (DAG)
-    if (sourceID.equals(destID)) return false;
-    List<TermId> visited = new ArrayList<>();
-    BreadthFirstSearch<TermId, ImmutableEdge<TermId>> bfs = new BreadthFirstSearch<>();
-    bfs.startFromForward(graph, sourceID, new VertexVisitor<TermId, ImmutableEdge<TermId>>() {
-        @Override
-        public boolean visit(DirectedGraph<TermId, ImmutableEdge<TermId>> g, TermId termId) {
-          visited.add(termId);
-          return true;
-        }});
-    return visited.contains(destID);
-  }
-
-
-
-
 
   @Override
   public Ontology<T, R> subOntology(TermId subOntologyRoot) {
