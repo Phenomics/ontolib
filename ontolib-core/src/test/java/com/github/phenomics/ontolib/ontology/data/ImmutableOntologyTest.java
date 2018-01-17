@@ -1,7 +1,6 @@
 package com.github.phenomics.ontolib.ontology.data;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -36,27 +35,5 @@ public class ImmutableOntologyTest extends ImmutableOntologyTestBase {
         "[ImmutableTermId [prefix=ImmutableTermPrefix [value=HP], id=0000002], ImmutableTermId [prefix=ImmutableTermPrefix [value=HP], id=0000003], ImmutableTermId [prefix=ImmutableTermPrefix [value=HP], id=0000004]]",
         ontology.getParentTermIds(id1).toString());
   }
-
-
-  /** The example graph has id1->id2, id1->id3, id1->id4, id2->id5, id4->id5 */
-  @Test
-  public void testPathExists() {
-    assertTrue(ontology.existsPath(id1,id2));
-    assertFalse(ontology.existsPath(id2,id1));
-    assertTrue(ontology.existsPath(id1,id3));
-    assertFalse(ontology.existsPath(id3,id1));
-    assertTrue(ontology.existsPath(id1,id4));
-    assertFalse(ontology.existsPath(id4,id1));
-    assertTrue(ontology.existsPath(id1,id5));
-    assertFalse(ontology.existsPath(id5,id1));
-    assertTrue(ontology.existsPath(id2,id5));
-    assertFalse(ontology.existsPath(id5,id2));
-    assertTrue(ontology.existsPath(id4,id5));
-    assertFalse(ontology.existsPath(id5,id4));
-  // test that a term cannot have a path to itself.
-    assertFalse(ontology.existsPath(id5,id5));
-
-  }
-
 
 }
