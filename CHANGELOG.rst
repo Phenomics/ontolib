@@ -8,6 +8,7 @@ v0.4
 
 - Disabling ``mv_store`` feature of H2.
 - Fixing various bugs in ``H2ScoreDistributionReader`` and ``H2ScoreDistributionWriter``.
+- Adding class ``OntologyAlgorithm`` with test class ``OntologyAlgorithmTest``. Implements functions to get children, parents, descendents and ancestors.
 
 ----
 v0.3
