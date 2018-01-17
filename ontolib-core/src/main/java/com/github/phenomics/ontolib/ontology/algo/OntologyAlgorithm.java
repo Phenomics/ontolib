@@ -6,7 +6,6 @@ import com.github.phenomics.ontolib.formats.hpo.HpoFrequencyTermIds;
 import com.github.phenomics.ontolib.formats.hpo.HpoModeOfInheritanceTermIds;
 import com.github.phenomics.ontolib.formats.hpo.HpoSubOntologyRootTermIds;
 import com.github.phenomics.ontolib.graph.algo.BreadthFirstSearch;
-import com.github.phenomics.ontolib.graph.algo.VertexVisitor;
 import com.github.phenomics.ontolib.graph.data.DirectedGraph;
 import com.github.phenomics.ontolib.graph.data.Edge;
 import com.github.phenomics.ontolib.graph.data.ImmutableEdge;
